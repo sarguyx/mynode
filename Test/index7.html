@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Basic</title>
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        /* Add any styling you need here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result {
+            width: 200px;
+            padding: 5px;
+        }
+        #cal {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $("#cal").click(function() {
+                var inputValue = $("#result").val();
+                var result;
+
+                try {
+                    // Calculate the result using eval
+                    result = eval(inputValue);
+
+                    // Check if result is finite and handle errors
+                    $("#text").text(
+                        isFinite(result) ? "ผลลัพธ์: " + result : "ผลลัพธ์ไม่ถูกต้อง"
+                    );
+                } catch (e) {
+                    $("#text").text("เกิดข้อผิดพลาด: " + e.message);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <p id="text">ผลลัพธ์</p>
+    <input type="text" id="result" placeholder="กรอกการคำนวณ เช่น 2 + 2">
+    <button id="cal">คำนวณ</button>
+</body>
+</html>
